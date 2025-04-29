@@ -28,17 +28,12 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 50),
                 ShadInputFormField(
-                  id: "Email", // ID unique pour le champ
-                  label: const Text("Email"), // Label affiché
-                  placeholder: const Text(
-                    "Enter your email here",
-                  ), // Texte indicatif
-                  controller:
-                      _emailController, // Contrôleur pour lire la valeur
+                  id: "Email",
+                  label: const Text("Email"),
+                  placeholder: const Text("Enter your email here"),
+                  controller: _emailController,
                 ),
-                const SizedBox(
-                  height: 16,
-                ), // 👉 Un petit espace entre les deux champs
+                const SizedBox(height: 16),
                 ShadInputFormField(
                   id: "Password",
                   label: const Text('Password'),
