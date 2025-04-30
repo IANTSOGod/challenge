@@ -5,26 +5,32 @@ class Challengecard extends StatelessWidget {
   final String title;
   final String description;
   final int point;
-  Challengecard({super.key,required this.title,required this.description,required this.point});
+  const Challengecard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.point,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ShadCard(
       width: 350,
+      backgroundColor: Color(0xFFCACACA),
       child: Row(
         children: [
           Column(
             children: [
-              Text(title),
+              Text(title, style: TextStyle(color: Colors.black)),
               Text(
                 description,
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12, color: Colors.black),
               ),
             ],
           ),
           SizedBox(width: 30),
           Text(
-            point.toString()+"XP",
+            point.toString() + "XP",
             style: TextStyle(
               color: Colors.blue,
               fontSize: 18,

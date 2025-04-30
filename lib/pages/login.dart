@@ -30,16 +30,31 @@ class Login extends StatelessWidget {
                 ShadInputFormField(
                   id: "Email",
                   label: const Text("Email"),
-                  placeholder: const Text("Enter your email here"),
+                  placeholder: const Text(
+                    "Enter your email here",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const ShadDecoration(
+                    color: Colors.white, // Optionnel : bordure visible
+                  ),
                 ),
                 const SizedBox(height: 16),
                 ShadInputFormField(
                   id: "Password",
                   label: const Text('Password'),
-                  placeholder: const Text("Enter your password here"),
+                  placeholder: const Text(
+                    "Enter your password here",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   controller: _passwordController,
                   obscureText: true,
+                  decoration: const ShadDecoration(
+                    color: Colors.white,
+                  ),
+                  style: const TextStyle(color: Colors.black),
                 ),
                 const SizedBox(height: 30),
                 ShadButton(

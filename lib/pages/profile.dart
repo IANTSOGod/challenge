@@ -51,7 +51,11 @@ class ProfilePage extends StatelessWidget {
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery.sizeOf(context).width * 0.6,
                     ),
-                    child: const ShadProgress(value: 0.5, color: Colors.orange),
+                    child: const ShadProgress(
+                      value: 0.5,
+                      color: Colors.orange,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
                 ],
               ),

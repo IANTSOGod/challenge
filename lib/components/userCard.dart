@@ -3,13 +3,15 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 class Usercard extends StatelessWidget {
   final String username;
-  const Usercard({super.key,required this.username});
+  const Usercard({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: ShadCard(
+        backgroundColor: Color(0xFFCACACA),
+
         child: Row(
           children: [
             const ShadAvatar(
@@ -18,7 +20,13 @@ class Usercard extends StatelessWidget {
               size: Size(50, 50),
             ),
             const SizedBox(width: 20),
-            const Text("Username", style: TextStyle(fontSize: 20)),
+            Text(
+              "Username",
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
           ],
         ),
       ),

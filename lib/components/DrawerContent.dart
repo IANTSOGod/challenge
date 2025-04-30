@@ -13,15 +13,21 @@ class Drawercontent extends StatelessWidget {
       children: [
         const DrawerHeader(
           padding: EdgeInsets.only(top: 30),
-          child: Text('Challenge Tracker', style: TextStyle(fontSize: 24)),
+          child: Text(
+            'Challenge Tracker',
+            style: TextStyle(fontSize: 24, color: Colors.black),
+          ),
         ),
         Expanded(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
+                leading: const Icon(Icons.home, color: Colors.black),
+                title: const Text(
+                  'Home',
+                  style: TextStyle(color: Colors.black),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -30,8 +36,11 @@ class Drawercontent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.star),
-                title: const Text('Rank'),
+                leading: const Icon(Icons.star, color: Colors.black),
+                title: const Text(
+                  'Rank',
+                  style: TextStyle(color: Colors.black),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -40,8 +49,11 @@ class Drawercontent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Profile'),
+                leading: const Icon(Icons.person, color: Colors.black),
+                title: const Text(
+                  'Profile',
+                  style: TextStyle(color: Colors.black),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -50,8 +62,11 @@ class Drawercontent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.message),
-                title: const Text('Messages'),
+                leading: const Icon(Icons.message, color: Colors.black),
+                title: const Text(
+                  'Chat',
+                  style: TextStyle(color: Colors.black),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -60,8 +75,11 @@ class Drawercontent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.group),
-                title: const Text("All challenges"),
+                leading: const Icon(Icons.group, color: Colors.black),
+                title: const Text(
+                  "All challenges",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ],
           ),
@@ -69,12 +87,12 @@ class Drawercontent extends StatelessWidget {
         const Divider(),
         ListTile(
           leading: const Icon(Icons.logout, color: Colors.red),
-          title: const Text('Déconnexion', style: TextStyle(color: Colors.red)),
+          title: const Text('Deconnect', style: TextStyle(color: Colors.red)),
           onTap: () {
             Navigator.pop(context);
           },
         ),
-        const SizedBox(height: 16), // Petit espace en bas
+        const SizedBox(height: 16), 
       ],
     );
   }

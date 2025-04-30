@@ -11,7 +11,7 @@ class Homeplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: Drawer(child: Drawercontent()),
+      drawer: Drawer(backgroundColor: Colors.white, child: Drawercontent()),
       body: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 350),
         child: Column(

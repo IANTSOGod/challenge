@@ -27,11 +27,26 @@ class Rankcard extends StatelessWidget {
               style: TextStyle(fontSize: 20, color: Colors.blue),
             ),
             SizedBox(width: 20),
-            Column(children: [Text(username), Text("Lv" + level.toString())]),
+            Column(
+              children: [
+                Text(username, style: TextStyle(color: Colors.blueAccent)),
+                Text(
+                  "Lv" + level.toString(),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
             SizedBox(width: 100),
-            Text(xp.toString() + "XP"),
+            Text(
+              xp.toString() + "XP",
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
+        backgroundColor: Color(0xFFCACACA),
       ),
     );
   }

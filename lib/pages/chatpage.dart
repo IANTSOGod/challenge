@@ -8,6 +8,7 @@ class Chatpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<ShadFormState>();
+    final TextEditingController _searchController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -30,8 +31,16 @@ class Chatpage extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.centerRight,
                     children: [
-                      ShadInput(
-                        placeholder: const Text("Enter a username here"),
+                      ShadInputFormField(
+                        placeholder: const Text(
+                          "Enter a username here",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        controller: _searchController,
+                        style: const TextStyle(color: Colors.black),
+                        decoration: const ShadDecoration(
+                          color: Colors.white, // Optionnel : bordure visible
+                        ),
                       ),
                       Positioned(
                         right: 0,
@@ -39,7 +48,7 @@ class Chatpage extends StatelessWidget {
                           onPressed: () {
                             // Logique de recherche à implémenter ici
                           },
-                          icon: Icon(Icons.search),
+                          icon: Icon(Icons.search, color: Colors.black),
                         ),
                       ),
                     ],

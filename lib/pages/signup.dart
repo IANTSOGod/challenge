@@ -38,6 +38,7 @@ class Signup extends StatelessWidget {
                   id: 'email',
                   label: const Text("Email"),
                   placeholder: const Text("Enter your email here"),
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 10),
                 ShadInputFormField(

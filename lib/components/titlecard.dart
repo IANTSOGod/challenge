@@ -8,9 +8,9 @@ class Titlecard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ShadCard(
       width: 350,
+      backgroundColor: Color(0xFFCACACA),
       child: Row(
         children: [
           Column(
@@ -18,7 +18,7 @@ class Titlecard extends StatelessWidget {
               Text(title, style: TextStyle(fontSize: 18, color: Colors.blue)),
               Text(
                 "Completed all" + completed + "series",
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12, color: Colors.black),
               ),
             ],
           ),
