@@ -17,15 +17,21 @@ class Rankcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ShadCard(
-      child: Row(
-        children: [
-          Text(rank.toString()),
-          SizedBox(width: 10),
-          Column(children: [Text(username), Text("Lv" + level.toString())]),
-          SizedBox(width: 30),
-          Text(xp.toString() + "XP"),
-        ],
+    return Padding(
+      padding: EdgeInsets.only(left: 30),
+      child: ShadCard(
+        child: Row(
+          children: [
+            Text(
+              rank.toString(),
+              style: TextStyle(fontSize: 20, color: Colors.blue),
+            ),
+            SizedBox(width: 20),
+            Column(children: [Text(username), Text("Lv" + level.toString())]),
+            SizedBox(width: 100),
+            Text(xp.toString() + "XP"),
+          ],
+        ),
       ),
     );
   }

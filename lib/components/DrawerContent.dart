@@ -1,4 +1,6 @@
 import 'package:challenge/pages/HomePlayer.dart';
+import 'package:challenge/pages/chatpage.dart';
+import 'package:challenge/pages/profile.dart';
 import 'package:challenge/pages/rank.dart';
 import 'package:flutter/material.dart';
 
@@ -31,21 +33,30 @@ class Drawercontent extends StatelessWidget {
                 leading: const Icon(Icons.star),
                 title: const Text('Rank'),
                 onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=> Rank()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Rank()),
+                  );
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.person),
                 title: const Text('Profile'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.message),
                 title: const Text('Messages'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Chatpage()),
+                  );
                 },
               ),
               ListTile(

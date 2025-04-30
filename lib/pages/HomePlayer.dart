@@ -30,6 +30,7 @@ class Homeplayer extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 30, top: 10),
               child: ShadCard(
+                padding: EdgeInsets.all(1.00),
                 width: 350,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -64,6 +65,7 @@ class Homeplayer extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 30, top: 10),
               child: ShadCard(
+                padding: EdgeInsets.all(2.00),
                 width: 350,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

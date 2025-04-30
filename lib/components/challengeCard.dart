@@ -10,7 +10,7 @@ class Challengecard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadCard(
-      width: 300,
+      width: 350,
       child: Row(
         children: [
           Column(
