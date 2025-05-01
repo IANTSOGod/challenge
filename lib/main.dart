@@ -1,13 +1,28 @@
 import 'package:challenge/bloc/Bloc/LoginBloc.dart';
+import 'package:challenge/bloc/Bloc/SignupBloc.dart';
 import 'package:challenge/pages/login.dart';
+import 'package:challenge/services/AuthService.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    MultiBlocProvider(
-      providers: [BlocProvider<LoginBloc>(create: (context) => LoginBloc())],
+    MultiProvider(
+      providers: [
+        Provider(create: (_) => AuthService()), // Fournir LoginService
+        BlocProvider<LoginBloc>(
+          create:
+              (context) => LoginBloc(
+                authService: context.read<AuthService>(), // Fournir au bloc
+              ),
+        ),
+        BlocProvider<Signupbloc>(
+          create:
+              (context) => Signupbloc(authService: context.read<AuthService>()),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

@@ -1,23 +1,28 @@
+import 'package:challenge/services/AuthService.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:challenge/bloc/Event/LoginEvent.dart';
 import 'package:challenge/bloc/State/LoginState.dart';
 
-class LoginBloc extends Bloc<LoginEvent,LoginState>{
-  LoginBloc(): super(const LoginState()){
-    on<LoginSubmitted>((event,emit) async {
-      try {
-        //A remplacer par le service login
-        await Future.delayed(const Duration(seconds: 2));
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final AuthService authService;
 
-        if (event.email == "test@example.com" && event.password == "password") {
-          emit(state.copyWith(isLoading: false, isSuccess: true));
-        } else {
-          emit(state.copyWith(
-              isLoading: false, errorMessage: "Invalid credentials"));
+  LoginBloc({required this.authService}) : super(const LoginState()) {
+    on<LoginSubmitted>((event, emit) async {
+      emit(state.copyWith(isLoading: true, errorMessage: "", isSuccess: false));
+      try {
+        final userData = await authService.login(event.email, event.password);
+        if (userData != null) {
+          emit(
+            state.copyWith(isLoading: false, isSuccess: true, errorMessage: ""),
+          );
         }
-      } catch (_) {
-        emit(state.copyWith(
-            isLoading: false, errorMessage: "An unexpected error occurred"));
+      } catch (e) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: "Erreur inattendue : $e",
+          ),
+        );
       }
     });
   }
