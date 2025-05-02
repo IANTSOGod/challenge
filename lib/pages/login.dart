@@ -1,5 +1,8 @@
+import 'package:challenge/bloc/Bloc/InputBloc.dart';
 import 'package:challenge/bloc/Bloc/LoginBloc.dart';
+import 'package:challenge/bloc/Event/InputEvent.dart';
 import 'package:challenge/bloc/Event/LoginEvent.dart';
+import 'package:challenge/bloc/State/InputState.dart';
 import 'package:challenge/bloc/State/LoginState.dart';
 import 'package:challenge/components/AnimationLottie.dart';
 import 'package:challenge/pages/HomePlayer.dart';
@@ -67,18 +70,46 @@ class Login extends StatelessWidget {
                             color: Colors.white, // Optionnel : bordure visible
                           ),
                         ),
-                        const SizedBox(height: 16),
-                        ShadInputFormField(
-                          id: "Password",
-                          label: const Text('Password'),
-                          placeholder: const Text(
-                            "Enter your password here",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: const ShadDecoration(color: Colors.white),
-                          style: const TextStyle(color: Colors.black),
+                        const SizedBox(height: 30),
+                        BlocBuilder<InputBloc, InputState>(
+                          builder: (context, state) {
+                            return ShadInputFormField(
+                              id: "Password",
+                              label: const Text('Password'),
+                              placeholder: const Text(
+                                "Enter your password here",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              controller: _passwordController,
+                              obscureText: state.isShowing,
+                              decoration: const ShadDecoration(
+                                color: Colors.white,
+                              ),
+                              style: const TextStyle(color: Colors.black),
+                              trailing: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: ShadIconButton(
+                                  width: 20,
+                                  height: 20,
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
+                                  icon: Icon(
+                                    state.isShowing
+                                        ? LucideIcons.eyeOff
+                                        : LucideIcons.eye,
+                                    size: 20, // Taille raisonnable
+                                  ),
+                                  onPressed: () {
+                                    context.read<InputBloc>().add(
+                                      ChangeObscure(
+                                        isObscure: !state.isShowing,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 30),
                         ShadButton(

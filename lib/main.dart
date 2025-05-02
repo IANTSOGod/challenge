@@ -1,3 +1,4 @@
+import 'package:challenge/bloc/Bloc/InputBloc.dart';
 import 'package:challenge/bloc/Bloc/LoginBloc.dart';
 import 'package:challenge/bloc/Bloc/SignupBloc.dart';
 import 'package:challenge/pages/login.dart';
@@ -11,17 +12,16 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (_) => AuthService()), // Fournir LoginService
+        Provider(create: (_) => AuthService()),
         BlocProvider<LoginBloc>(
           create:
-              (context) => LoginBloc(
-                authService: context.read<AuthService>(), // Fournir au bloc
-              ),
+              (context) => LoginBloc(authService: context.read<AuthService>()),
         ),
         BlocProvider<Signupbloc>(
           create:
               (context) => Signupbloc(authService: context.read<AuthService>()),
         ),
+        BlocProvider<InputBloc>(create: (context) => InputBloc()),
       ],
       child: const MyApp(),
     ),
