@@ -9,10 +9,14 @@ class AuthService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
-
+      print(" Voici le statusCode: ${response.statusCode}");
       if (response.statusCode == 201) {
         return jsonDecode(response.body) as Map<String, dynamic>;
+      } else if (response.statusCode == 401 || response.statusCode == 404) {
+        final body = jsonDecode(response.body);
+        return {"message": body['message']};
       } else {
+        print("Aiza le dev flutter confirmé e");
         return null;
       }
     } catch (e) {

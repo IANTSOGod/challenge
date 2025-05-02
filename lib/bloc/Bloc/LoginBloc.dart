@@ -11,9 +11,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(state.copyWith(isLoading: true, errorMessage: "", isSuccess: false));
       try {
         final userData = await authService.login(event.email, event.password);
+
         if (userData != null) {
+          if (userData['message']) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                isSuccess: false,
+                errorMessage: userData['message'],
+              ),
+            );
+          } else {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                isSuccess: true,
+                errorMessage: "",
+              ),
+            );
+          }
+        } else {
           emit(
-            state.copyWith(isLoading: false, isSuccess: true, errorMessage: ""),
+            state.copyWith(
+              isLoading: false,
+              isSuccess: false,
+              errorMessage: "Email ou mdp incorrect",
+            ),
           );
         }
       } catch (e) {

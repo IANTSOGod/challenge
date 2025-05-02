@@ -118,6 +118,7 @@ class Login extends StatelessWidget {
                             if (formKey.currentState!.validate()) {
                               final email = _emailController.text;
                               final password = _passwordController.text;
+
                               context.read<LoginBloc>().add(
                                 LoginSubmitted(
                                   email: email,
