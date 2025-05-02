@@ -10,6 +10,7 @@ import 'package:challenge/pages/signup.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -22,20 +23,25 @@ class Login extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: BlocListener<LoginBloc, LoginState>(
+        child: BlocListener<LoginBloc, Loginstate>(
           listener:
               (listener, state) => {
-                if (state.isSuccess == true && state.errorMessage == "")
+                if (state is LoginStateDone)
                   {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Homeplayer()),
                     ),
-                  },
+                    context.read<LoginBloc>().add(LoginReset()),
+                    _emailController.clear(),
+                    _passwordController.clear(),
+                  }
+                else if (state is LoginStateError)
+                  Fluttertoast.showToast(msg: state.error),
               },
-          child: BlocBuilder<LoginBloc, LoginState>(
+          child: BlocBuilder<LoginBloc, Loginstate>(
             builder: (context, state) {
-              if (state.isLoading == true) {
+              if (state is LoginStateLoading) {
                 return AnimationLottie(
                   filePath: "assets/animations/loading.json",
                 );
@@ -66,8 +72,19 @@ class Login extends StatelessWidget {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(color: Colors.black),
-                          decoration: const ShadDecoration(
-                            color: Colors.white, // Optionnel : bordure visible
+                          decoration: const ShadDecoration(color: Colors.white),
+                          description: BlocBuilder<LoginBloc, Loginstate>(
+                            builder: (context, state) {
+                              if (state is LoginStateError &&
+                                  state.error == "User non trouvé") {
+                                return Text(
+                                  state.error,
+                                  style: TextStyle(color: Colors.red),
+                                );
+                              } else {
+                                return SizedBox();
+                              }
+                            },
                           ),
                         ),
                         const SizedBox(height: 30),
@@ -81,9 +98,23 @@ class Login extends StatelessWidget {
                                 style: TextStyle(color: Colors.black),
                               ),
                               controller: _passwordController,
-                              obscureText: state.isShowing,
+                              obscureText:
+                                  (state is InputShowing) ? false : true,
                               decoration: const ShadDecoration(
                                 color: Colors.white,
+                              ),
+                              description: BlocBuilder<LoginBloc, Loginstate>(
+                                builder: (context, state) {
+                                  if (state is LoginStateError &&
+                                      state.error == "Mot de passe invalide") {
+                                    return Text(
+                                      state.error,
+                                      style: TextStyle(color: Colors.red),
+                                    );
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                },
                               ),
                               style: const TextStyle(color: Colors.black),
                               trailing: Padding(
@@ -94,7 +125,7 @@ class Login extends StatelessWidget {
                                   backgroundColor: Colors.white,
                                   foregroundColor: Colors.black,
                                   icon: Icon(
-                                    state.isShowing
+                                    (state is InputShowing)
                                         ? LucideIcons.eyeOff
                                         : LucideIcons.eye,
                                     size: 20, // Taille raisonnable
@@ -102,7 +133,10 @@ class Login extends StatelessWidget {
                                   onPressed: () {
                                     context.read<InputBloc>().add(
                                       ChangeObscure(
-                                        isObscure: !state.isShowing,
+                                        isObscure:
+                                            (state is InputShowing)
+                                                ? false
+                                                : true,
                                       ),
                                     );
                                   },

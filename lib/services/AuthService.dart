@@ -1,30 +1,45 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+class AuthResponse {
+  final int statusCode;
+  final dynamic data;
+  final String? message;
+
+  AuthResponse({
+    required this.statusCode,
+    required this.data,
+    this.message,
+  });
+}
+
 class AuthService {
-  Future<Map<String, dynamic>?> login(String email, String password) async {
+  Future<AuthResponse> login(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse("http://192.168.124.174:3000/authentification/login"),
+        Uri.parse("http://192.168.51.174:3000/authentification/login"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
-      print(" Voici le statusCode: ${response.statusCode}");
-      if (response.statusCode == 201) {
-        return jsonDecode(response.body) as Map<String, dynamic>;
-      } else if (response.statusCode == 401 || response.statusCode == 404) {
-        final body = jsonDecode(response.body);
-        return {"message": body['message']};
-      } else {
-        print("Aiza le dev flutter confirmé e");
-        return null;
-      }
+      
+      final body = jsonDecode(response.body);
+      
+      return AuthResponse(
+        statusCode: response.statusCode,
+        data: body,
+        message: body['message'],
+      );
     } catch (e) {
-      return null;
+      print("Erreur: $e");
+      return AuthResponse(
+        statusCode: 500,
+        data: null,
+        message: "Une erreur s'est produite: $e",
+      );
     }
   }
 
-  Future<Map<String, dynamic>?> signup(
+  Future<AuthResponse> signup(
     String email,
     String password,
     String firstname,
@@ -32,7 +47,7 @@ class AuthService {
   ) async {
     try {
       final response = await http.post(
-        Uri.parse("http://192.168.124.174:3000/authentification/signup"),
+        Uri.parse("http://192.168.51.174:3000/authentification/signup"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,
@@ -41,13 +56,21 @@ class AuthService {
           'lastname': lastname,
         }),
       );
-      if (response.statusCode == 201) {
-        return jsonDecode(response.body) as Map<String, dynamic>;
-      } else {
-        return null;
-      }
+      
+      final body = jsonDecode(response.body);
+      
+      return AuthResponse(
+        statusCode: response.statusCode,
+        data: body,
+        message: body['message'],
+      );
     } catch (e) {
-      return null;
+      print("Erreur: $e");
+      return AuthResponse(
+        statusCode: 500,
+        data: null,
+        message: "Une erreur s'est produite: $e",
+      );
     }
   }
 }

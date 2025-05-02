@@ -4,7 +4,6 @@ abstract class SignupEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
-
 class SignupSubmitted extends SignupEvent {
   final String email;
   final String password;
@@ -21,3 +20,5 @@ class SignupSubmitted extends SignupEvent {
   @override
   List<Object?> get props => [email, password, firstname, lastname];
 }
+
+class SignupReset extends SignupEvent{}

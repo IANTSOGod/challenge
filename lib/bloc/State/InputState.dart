@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class InputState extends Equatable {
-  final bool isShowing;
-  const InputState({this.isShowing = false});
+  const InputState();
 
-  InputState copyWith({bool? isShowing}) {
-    return InputState(isShowing: isShowing ?? this.isShowing);
-  }
 
   @override
-  List<Object?> get props => [isShowing];
+  List<Object?> get props => [];
 }
+
+class InputShowing extends InputState{}
+
+class InputNotShowing extends InputState{}
