@@ -18,17 +18,25 @@ class Challengecard extends StatelessWidget {
       width: 350,
       backgroundColor: Color(0xFFCACACA),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(title, style: TextStyle(color: Colors.black)),
-              Text(
-                description,
-                style: TextStyle(fontSize: 12, color: Colors.black),
+              Expanded(
+                flex: 0,
+                child: Text(
+                 overflow: TextOverflow.fade,
+                  description,
+                  style: TextStyle(fontSize: 12, color: Colors.black),
+                ),
               ),
             ],
           ),
-          SizedBox(width: 30),
+          // SizedBox(width: 30),
           Text(
             point.toString() + "XP",
             style: TextStyle(

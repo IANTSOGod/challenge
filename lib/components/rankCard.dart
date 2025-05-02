@@ -16,10 +16,10 @@ class Rankcard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: EdgeInsets.only(left: 30),
       child: ShadCard(
+        backgroundColor: Color(0xFFCACACA),
         child: Row(
           children: [
             Text(
@@ -38,7 +38,7 @@ class Rankcard extends StatelessWidget {
             ),
             SizedBox(width: 100),
             Text(
-              xp.toString() + "XP",
+              "${xp.toString()} XP",
               style: TextStyle(
                 color: Colors.blueAccent,
                 fontWeight: FontWeight.bold,
@@ -46,7 +46,6 @@ class Rankcard extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Color(0xFFCACACA),
       ),
     );
   }
