@@ -5,6 +5,7 @@ import 'package:challenge/components/AnimationLottie.dart';
 import 'package:challenge/pages/otpverification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class Signup extends StatelessWidget {
@@ -23,7 +24,7 @@ class Signup extends StatelessWidget {
         child: BlocListener<Signupbloc, Signupstate>(
           listener:
               (listener, state) => {
-                if (state.isSuccess && state.errorMessage == "")
+                if (state is SignupDone)
                   {
                     Navigator.push(
                       context,
@@ -31,11 +32,21 @@ class Signup extends StatelessWidget {
                         builder: (context) => const Otpverification(),
                       ),
                     ),
+                    Fluttertoast.showToast(msg: state.message),
+                    _emailcontroller.clear(),
+                    _passwordcontroller.clear(),
+                    _firstnamecontroller.clear(),
+                    _lastnamecontroller.clear(),
+                  }
+                else
+                  {
+                    if (state is SignupError)
+                      {Fluttertoast.showToast(msg: state.error)},
                   },
               },
           child: BlocBuilder<Signupbloc, Signupstate>(
             builder: (context, state) {
-              if (state.isLoading) {
+              if (state is SignupLoading) {
                 return AnimationLottie(
                   filePath: "assets/animations/loading.json",
                 );

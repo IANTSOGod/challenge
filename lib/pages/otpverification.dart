@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:challenge/pages/login.dart';
 
@@ -31,12 +32,12 @@ class Otpverification extends StatelessWidget {
                   children: [
                     ShadInputOTPGroup(
                       children: [
-                        ShadInputOTPSlot(),
-                        ShadInputOTPSlot(),
-                        ShadInputOTPSlot(),
-                        ShadInputOTPSlot(),
-                        ShadInputOTPSlot(),
-                        ShadInputOTPSlot(),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
+                        ShadInputOTPSlot(keyboardType: TextInputType.number),
                       ],
                     ),
                   ],
@@ -53,6 +54,8 @@ class Otpverification extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
+                    final otp = _otpcontroller.text;
+                    Fluttertoast.showToast(msg: otp);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => Login()),

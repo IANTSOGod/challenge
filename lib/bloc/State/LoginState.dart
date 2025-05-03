@@ -29,7 +29,15 @@ class LoginStateDone extends Loginstate {
   });
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [
+    email,
+    password,
+    id,
+    role,
+    firstName,
+    lastName,
+    isEmailVerified,
+  ];
 }
 
 // ignore: must_be_immutable

@@ -1,28 +1,24 @@
 import 'package:equatable/equatable.dart';
 
 class Signupstate extends Equatable {
-  final bool isLoading;
-  final bool isSuccess;
-  final String errorMessage;
+  @override
+  List<Object?> get props => [];
+}
 
-  const Signupstate({
-    this.isLoading = false,
-    this.isSuccess = false,
-    this.errorMessage = "",
-  });
+class SignupLoading extends Signupstate {}
 
-  Signupstate copyWith({
-    bool? isLoading,
-    bool? isSuccess,
-    String? errorMessage,
-  }) {
-    return Signupstate(
-      isLoading: isLoading ?? this.isLoading,
-      isSuccess: isSuccess ?? this.isSuccess,
-      errorMessage: errorMessage ?? this.errorMessage,
-    );
-  }
+class SignupError extends Signupstate {
+  final String error;
+  SignupError({required this.error});
 
   @override
-  List<Object?> get props => [isLoading, isSuccess, errorMessage];
+  List<Object?> get props => [error];
+}
+
+class SignupDone extends Signupstate {
+  final String message;
+  SignupDone({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }

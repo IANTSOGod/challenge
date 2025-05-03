@@ -170,6 +170,9 @@ class Login extends StatelessWidget {
                         ShadButton.secondary(
                           width: 350,
                           onPressed: () {
+                            context.read<LoginBloc>().add(LoginReset());
+                            _emailController.clear();
+                            _passwordController.clear();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
