@@ -17,7 +17,7 @@ class AuthService {
   Future<AuthResponse> login(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse("http://192.168.103.174:3000/authentification/login"),
+        Uri.parse("http://192.168.20.121:3000/authentification/login"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
@@ -47,7 +47,7 @@ class AuthService {
   ) async {
     try {
       final response = await http.post(
-        Uri.parse("http://192.168.103.174:3000/authentification/signup"),
+        Uri.parse("http://192.168.20.121:3000/authentification/signup"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,

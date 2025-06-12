@@ -52,6 +52,7 @@ class Signup extends StatelessWidget {
                 );
               } else {
                 return ShadForm(
+                  key: formKey,
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 350),
                     child: Column(
@@ -97,18 +98,20 @@ class Signup extends StatelessWidget {
                         ShadButton(
                           width: 350,
                           onPressed: () {
-                            final email = _emailcontroller.text;
-                            final password = _passwordcontroller.text;
-                            final firstname = _firstnamecontroller.text;
-                            final lastname = _lastnamecontroller.text;
-                            context.read<Signupbloc>().add(
-                              SignupSubmitted(
-                                email: email,
-                                password: password,
-                                firstname: firstname,
-                                lastname: lastname,
-                              ),
-                            );
+                            if (formKey.currentState!.validate()) {
+                              final email = _emailcontroller.text;
+                              final password = _passwordcontroller.text;
+                              final firstname = _firstnamecontroller.text;
+                              final lastname = _lastnamecontroller.text;
+                              context.read<Signupbloc>().add(
+                                SignupSubmitted(
+                                  email: email,
+                                  password: password,
+                                  firstname: firstname,
+                                  lastname: lastname,
+                                ),
+                              );
+                            }
                           },
                           child: Text(
                             "Create account",

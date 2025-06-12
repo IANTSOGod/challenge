@@ -9,6 +9,15 @@ class Signupbloc extends Bloc<SignupEvent, Signupstate> {
   Signupbloc({required this.authService}) : super(Signupstate()) {
     on<SignupSubmitted>((event, emit) async {
       emit(SignupLoading());
+      print(
+        event.email +
+            " " +
+            event.password +
+            " " +
+            event.firstname +
+            " " +
+            event.lastname,
+      );
       final userData = await authService.signup(
         event.email,
         event.password,

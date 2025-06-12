@@ -31,7 +31,7 @@ class Rankcard extends StatelessWidget {
               children: [
                 Text(username, style: TextStyle(color: Colors.blueAccent)),
                 Text(
-                  "Lv" + level.toString(),
+                  "Lv${level.toString()}",
                   style: TextStyle(color: Colors.black),
                 ),
               ],

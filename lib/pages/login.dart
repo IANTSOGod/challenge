@@ -35,6 +35,7 @@ class Login extends StatelessWidget {
                     context.read<LoginBloc>().add(LoginReset()),
                     _emailController.clear(),
                     _passwordController.clear(),
+                    
                   }
                 else if (state is LoginStateError)
                   Fluttertoast.showToast(msg: state.error),

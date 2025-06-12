@@ -17,7 +17,7 @@ class Titlecard extends StatelessWidget {
             children: [
               Text(title, style: TextStyle(fontSize: 18, color: Colors.blue)),
               Text(
-                "Completed all" + completed + "series",
+                "Completed all $completed series",
                 style: TextStyle(fontSize: 12, color: Colors.black),
               ),
             ],

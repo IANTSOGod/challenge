@@ -29,7 +29,7 @@ class Challengecard extends StatelessWidget {
               Expanded(
                 flex: 0,
                 child: Text(
-                 overflow: TextOverflow.fade,
+                  overflow: TextOverflow.fade,
                   description,
                   style: TextStyle(fontSize: 12, color: Colors.black),
                 ),
@@ -38,7 +38,7 @@ class Challengecard extends StatelessWidget {
           ),
           // SizedBox(width: 30),
           Text(
-            point.toString() + "XP",
+            "${point.toString()} XP",
             style: TextStyle(
               color: Colors.blue,
               fontSize: 18,
